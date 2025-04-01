@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #2f5d3d, #60b674);
+        }
+        .login-container {
+            width: 400px;
+            padding: 25px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        h2 {
+            color: #070707;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        input, select, button {
+            width: 100%;
+            margin: 10px 0;
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            outline: none;
+            transition: 0.3s;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #6acea2;
+        }
+        .energy-info {
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffeb3b;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>LOGIN</h2>
+        <p class="energy-info">🌍⚡ Log in to see how much energy YOU have contributed! ⚡🌱</p>
+        <form id="loginForm">
+            <input type="email" id="email" placeholder="Enter your email" required>
+            <select id="age" required>
+                <option value="">Select Age Range</option>
+                <option value="10-17">10-17</option>
+                <option value="18-20">18-20</option>
+                <option value="21-25">21-25</option>
+                <option value="26-30">26-30</option>
+                <option value="31-35">31-35</option>
+            </select>
+            <select id="weight" required>
+                <option value="">Select Weight Range</option>
+                <option value="35">30-40 kg</option>
+                <option value="45">41-50 kg</option>
+                <option value="55">51-60 kg</option>
+                <option value="65">61-70 kg</option>
+                <option value="75">71-80 kg</option>
+            </select>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            let email = document.getElementById("email").value.trim();
+            let age = document.getElementById("age").value;
+            let weight = document.getElementById("weight").value;
+
+            if (!email.includes("@") || !email.includes(".")) {
+                alert("Please enter a valid email.");
+                return;
+            }
+
+            if (!age || !weight) {
+                alert("Please select an age range and weight.");
+                return;
+            }
+
+            localStorage.setItem("userEmail", email);
+            localStorage.setItem("userAge", age);
+            localStorage.setItem("userWeight", weight);
+
+            window.location.href = "main.html"; // Redirect to energy page
+        });
+    </script>
+</body>
+</html>
